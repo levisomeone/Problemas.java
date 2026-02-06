@@ -5,6 +5,39 @@
   Algaworks: 6 a 11 capitulos;
 */
 
+import java.util.Scanner;
+
+public class ClasseEleitoral {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int idade = sc.nextInt();
+
+        if (idade < 16) {
+            System.out.println("Nao pode votar");
+        } else if ((idade >= 16 && idade <= 17) || idade > 65) {
+            System.out.println("Voto facultativo");
+        } else {
+            System.out.println("Voto obrigatorio");
+        }
+    }
+}
+
+public class Fibonacci {
+    public static void main(String[] args) {
+        long a = 1, b = 1;
+
+        System.out.print(a + " " + b);
+
+        for (int i = 3; i <= 30; i++) {
+            long c = a + b;
+            System.out.print(" " + c);
+            a = b;
+            b = c;
+        }
+    }
+}
+
+
 
 import java.util.*;
 
@@ -196,6 +229,182 @@ public class AnalisadorDeAlturas {
         System.out.printf("Média das alturas: %.2f m\n", media);
 
         sc.close();
+    }
+}
+
+import java.util.Scanner;
+
+public class Piramide {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+}
+
+import java.util.Scanner;
+
+public class Busca {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int[] v = {3, 7, 12, 18, 25, 31, 40, 56, 72, 90};
+
+        int x = sc.nextInt();
+        int pos = -1;
+
+        for (int i = 0; i < v.length; i++) {
+            if (v[i] == x) {
+                pos = i;
+                break;
+            }
+        }
+
+        if (pos != -1) {
+            System.out.println("O numero " + x + " posicao" + pos);
+        } else {
+            System.out.println("O numero " + x + " nao foi encontrado");
+        }
+    }
+}
+
+import java.util.Scanner;
+
+public class ParesImpares {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int[] v = new int[10];
+        int[] pares = new int[10];
+        int[] impares = new int[10];
+
+        int p = 0, i = 0;
+
+        for (int j = 0; j < 10; j++) {
+            v[j] = sc.nextInt();
+        }
+
+        for (int j = 0; j < 10; j++) {
+            if (v[j] % 2 == 0) {
+                pares[p++] = v[j];
+            } else {
+                impares[i++] = v[j];
+            }
+        }
+
+        System.out.println("Pares:");
+        for (int j = 0; j < p; j++) {
+            System.out.print(pares[j] + " ");
+        }
+
+        System.out.println("\nImpares:");
+        for (int j = 0; j < i; j++) {
+            System.out.print(impares[j] + " ");
+        }
+    }
+}
+
+import java.util.Scanner;
+
+public class Inversor {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        String[] nomes = new String[10];
+
+        for (int i = 0; i < 10; i++) {
+            nomes[i] = sc.nextLine();
+        }
+
+        for (int i = nomes.length - 1; i >= 0; i--) {
+            System.out.println(nomes[i]);
+        }
+    }
+}
+
+
+import java.util.Scanner;
+
+public class Gabarito {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        char[] gabarito = {'A', 'B', 'C', 'D', 'E'};
+        char[] resposta = new char[5];
+
+        int nota = 0;
+
+        for (int i = 0; i < 5; i++) {
+            resposta[i] = sc.next().charAt(0);
+        }
+
+        for (int i = 0; i < 5; i++) {
+            if (resposta[i] == gabarito[i]) {
+                nota += 2;
+            }
+        }
+
+        System.out.println("Nota: " + nota);
+    }
+}
+
+import java.util.Scanner;
+import java.util.Random;
+
+public class MapaTesouro {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Random rd = new Random();
+
+        int[][] mapa = new int[3][3];
+
+        int linhaTesouro = rd.nextInt(3);
+        int colunaTesouro = rd.nextInt(3);
+
+        mapa[linhaTesouro][colunaTesouro] = 1;
+
+        int linha = sc.nextInt();
+        int coluna = sc.nextInt();
+
+        if (mapa[linha][coluna] == 1) {
+            System.out.println("Tesouro encontrado!");
+        } else {
+            System.out.println("Agua...");
+        }
+    }
+}
+
+import java.util.Scanner;
+
+public class Diagonais {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[][] m = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                m[i][j] = sc.nextInt();
+            }
+        }
+
+        int somaPrincipal = 0;
+        int somaSecundaria = 0;
+
+        for (int i = 0; i < n; i++) {
+            somaPrincipal += m[i][i];
+            somaSecundaria += m[i][n - 1 - i];
+        }
+
+        System.out.println("Diagonal principal: " + somaPrincipal);
+        System.out.println("Diagonal secundaria: " + somaSecundaria);
     }
 }
 
