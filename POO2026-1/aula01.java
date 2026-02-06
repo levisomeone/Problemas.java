@@ -5,6 +5,8 @@
   Algaworks: 6 a 11 capitulos;
 */
 
+Qtt07- Programa de verificação de idade eleitoral
+
 import java.util.Scanner;
 
 public class ClasseEleitoral {
@@ -22,6 +24,9 @@ public class ClasseEleitoral {
     }
 }
 
+
+Qtt08- Sequencia de Fibonacci com limite
+  
 public class Fibonacci {
     public static void main(String[] args) {
         long a = 1, b = 1;
@@ -37,7 +42,7 @@ public class Fibonacci {
     }
 }
 
-
+Qtt09- Tabuada do x10
 
 import java.util.*;
 
@@ -54,6 +59,8 @@ public class Main {
     }
 }
 
+Qtt10- Contagem de Números primos
+
 import java.util.Scanner;
 
 public class Main {
@@ -68,6 +75,8 @@ public class Main {
         }
         return true;
     }
+
+  Qtt11- Media de Notas
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -86,6 +95,8 @@ public class Main {
         scanner.close();
     }
 }
+
+Qtt12- Solicitando números positivos
 
 import java.util.*;
 
@@ -106,6 +117,8 @@ public class Main{
     System.out.println(contador + " Reprovaram");
   }
 }
+
+Qtt13- Matriz identidade 5x5
 
 import java.util.*;
 
@@ -142,6 +155,8 @@ public class ContadorMediaNumeros {
     }
 }
 
+Qtt14- Tabuleiro de tabuada
+
 import java.util.*;
 
 public class MatrizIdentidade{
@@ -168,6 +183,8 @@ public class MatrizIdentidade{
   }
 }
 
+Qtt15- Analisador de Alturas
+
 import java.util.Scanner;
 
 public class TabuadaDoWhile {
@@ -192,6 +209,8 @@ public class TabuadaDoWhile {
         scanner.close();
     }
 }
+
+Qtt16- Pirâmide de Astericos
 
 import java.util.Scanner;
 import java.util.Locale;
@@ -232,6 +251,8 @@ public class AnalisadorDeAlturas {
     }
 }
 
+Qtt17- Busca Binária
+
 import java.util.Scanner;
 
 public class Piramide {
@@ -247,6 +268,8 @@ public class Piramide {
         }
     }
 }
+
+Qtt18- Separador de Pares e Impares
 
 import java.util.Scanner;
 
@@ -273,6 +296,8 @@ public class Busca {
         }
     }
 }
+
+Qtt19- Inversor de Sequência
 
 import java.util.Scanner;
 
@@ -310,6 +335,8 @@ public class ParesImpares {
     }
 }
 
+Qtt20- Gabarito de Prova
+
 import java.util.Scanner;
 
 public class Inversor {
@@ -328,6 +355,7 @@ public class Inversor {
     }
 }
 
+Qtt21- Mapa do Tesouro
 
 import java.util.Scanner;
 
@@ -354,6 +382,8 @@ public class Gabarito {
     }
 }
 
+Qtt??- ?
+
 import java.util.Scanner;
 import java.util.Random;
 
@@ -379,6 +409,8 @@ public class MapaTesouro {
         }
     }
 }
+
+Qtt22- Diagonal Principal e Secundária
 
 import java.util.Scanner;
 
