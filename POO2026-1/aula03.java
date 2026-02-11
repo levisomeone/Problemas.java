@@ -75,3 +75,118 @@ public class Main {
     }
 }
 
+03) Sistema de Alunos: 
+
+import java.util.Scanner;
+
+public class Aluno{
+  private String nome;
+  private int matricula;
+  private char sexo;
+  private int anoNascimento;
+  private int mesNascimento;
+  private boolean status;
+  double nota01, nota02, nota03, nota04;
+  
+  
+  double calcularMedia(){
+    return (nota01 + nota02+ nota03 + nota04) / 4;
+  }
+  
+  int calcularIdade(int anoAtual){
+    return anoAtual - anoNascimento;
+  }
+  
+  boolean seAprovado(){
+    return calcularMedia() >= 7;
+  }
+}
+
+public class SistemaAlunos{
+  public static void main(String args[]){
+    Scanner sc = new Scanner(System.in);
+    Aluno[] alunos = new Aluno[5];
+    
+    int inativos = 0;
+    int ativos = 0;
+    int aprovados = 0;
+    int reporvados = 0;
+    int anoAtual = 2026;
+    
+    for(int i=0;i<alunos.length;i++){
+      alunos[i] = new Aluno;
+      
+      System.out.println("\nCadastro do aluno " + (i + 1));
+      System.out.print("Matrícula: ");
+      alunos[i].matricula = sc.nextLine();
+
+      System.out.print("Nome: ");
+      alunos[i].nome = sc.nextLine();
+
+      System.out.print("Sexo: ");
+      alunos[i].sexo = sc.nextLine();
+
+      System.out.print("Ano de nascimento: ");
+      alunos[i].anoNascimento = sc.nextInt();
+
+      System.out.print("Mês de nascimento: ");
+      alunos[i].mesNascimento = sc.nextInt();
+      sc.nextLine();
+
+      System.out.print("Status (ativo/inativo): ");
+      alunos[i].status = sc.nextLine();
+
+      System.out.print("Nota 1: ");
+      alunos[i].nota1 = sc.nextDouble();
+
+      System.out.print("Nota 2: ");
+      alunos[i].nota2 = sc.nextDouble();
+
+      System.out.print("Nota 3: ");
+      alunos[i].nota3 = sc.nextDouble();
+
+      System.out.print("Nota 4: ");
+      alunos[i].nota4 = sc.nextDouble();
+      sc.nextLine();
+    }
+    
+    for(Aluno aluno : alunos){
+      if(aluno.status.equalsIgnoreCase("ativo")){
+        ativos++;
+      }else{
+        inativos++;
+      }
+      if(aluno.estaAprovado()){
+        aprovados++;
+      }else{
+        reprovados++;
+      }
+    }
+    
+    System.out.println("\n===== DADOS DOS ALUNOS =====");
+
+    for (Aluno aluno : alunos) {
+      System.out.println("\n---------------------------");
+      System.out.println("Matrícula: " + aluno.matricula);
+      System.out.println("Nome: " + aluno.nome);
+      System.out.println("Sexo: " + aluno.sexo);
+      System.out.println("Idade: " + aluno.calcularIdade(anoAtual));
+      System.out.println("Mês de nascimento: " + aluno.mesNascimento);
+      System.out.println("Status: " + aluno.status);
+      System.out.printf("Média: %.2f\n", aluno.calcularMedia());
+
+      if (aluno.estaAprovado()) {
+        System.out.println("Situação: APROVADO");
+        } else {
+            System.out.println("Situação: REPROVADO");
+          }
+        }
+        System.out.println("\n===== RESUMO FINAL =====");
+        System.out.println("Alunos ativos: " + ativos);
+        System.out.println("Alunos inativos: " + inativos);
+        System.out.println("Aprovados: " + aprovados);
+        System.out.println("Reprovados: " + reprovados);
+
+        sc.close();
+  }
+}
