@@ -190,3 +190,54 @@ public class SistemaAlunos{
         sc.close();
   }
 }
+
+04) Arredondamento Math:
+
+public class Arredondamento{
+  public static void main(String args[]){
+    double valor1 = 5.2;
+    double valor2 = 5.6;
+    double valor3 = -5.8;
+    
+    long arred1 = Math.round(valor1);
+    long arred2 = Math.round(valor2);
+    long arred3 = Math.round(valor3);
+    
+    System.out.println("Valor: " + valor1 + " -> Arredondado: " + arred1);
+    System.out.println("Valor: " + valor2 + " -> Arredondado: " + arred2);
+    System.out.println("Valor: " + valor3 + " -> Arredondado: " + arred3);
+  }
+}
+
+05) Arredondamento inteiro anterior; 
+
+public class ArredondamentoAnterior {
+  public static void main(String[] args) {
+    double valor1 = 5.2;
+    double valor2 = 5.6;
+    double valor3 = -5.8;
+  
+    double arred1 = Math.floor(valor1);
+    double arred2 = Math.floor(valor2);
+    double arred3 = Math.floor(valor3);
+  
+    System.out.println("Valor: " + valor1 + " -> Inteiro anterior: " + arred1);
+    System.out.println("Valor: " + valor2 + " -> Inteiro anterior: " + arred2);
+    System.out.println("Valor: " + valor3 + " -> Inteiro anterior: " + arred3);
+  }
+}
+
+06) Simuador de Dados: 
+
+public class SimularDados{
+  public static void main(String args[]){
+    System.out.println("Simulacao Iniciada>>");
+    for(int i=0;i<10;i++){
+      int dado = (int)(Math.random() * 6) + 1;
+
+      System.out.println("Jogada " + i + ": " + dado);
+    }
+  }
+}
+
+07) 
