@@ -440,3 +440,66 @@ public class Diagonais {
     }
 }
 
+##Desafio: 
+
+Import java.util.Scanner;
+
+Public class AgendaMensal {
+ Public static void main(String[] args) {
+   Scanner sc = new Scanner(System.in);
+   String[][] agenda = new String[31][24];
+   for (int i = 1; i <= 30; i++) {
+     for (int j = 0; j < 24; j++) {
+       agenda[i][j] = null;
+   }
+ }
+ 
+ While (true) {
+ System.out.println(“\n=== AGENDA MENSAL ===”);
+ System.out.println(“1. Agendar compromisso”);
+ System.out.println(“2. Consultar compromisso”);
+ System.out.println(“3. Sair”);
+ System.out.print(“Escolha uma opção: “);
+ Int opcao = sc.nextInt();
+ Sc.nextLine();
+ If (opcao == 1) {
+ 
+ System.out.print(“Digite o dia (1 a 30): “);
+ Int dia = sc.nextInt();
+ System.out.print(“Digite a hora (0 a 23): “);
+ Int hora = sc.nextInt();
+ Sc.nextLine();
+ If (dia < 1 || dia > 30 || hora < 0 || hora > 23) {
+ System.out.println(“Dia ou hora inválidos!”);
+ } else if (agenda[dia][hora] != null) {
+ System.out.println(“Já existe um compromisso nesse horário!”);
+ } else {
+ System.out.print(“Digite a descrição do compromisso: “);
+ String descricao = sc.nextLine();
+ Agenda[dia][hora] = descricao;
+ System.out.println(“Compromisso agendado com sucesso!”);
+ }
+ } else if (opcao == 2) {
+ 
+ System.out.print(“Digite o dia (1 a 30): “);
+ Int dia = sc.nextInt();
+
+  System.out.print(“Digite a hora (0 a 23): “);
+ Int hora = sc.nextInt();
+ If (dia < 1 || dia > 30 || hora < 0 || hora > 23) {
+ System.out.println(“Dia ou hora inválidos!”);
+ } else if (agenda[dia][hora] == null) {
+ System.out.println(“Nenhum compromisso agendado.”);
+ } else {
+ System.out.println(“Compromisso: “ + agenda[dia][hora]);
+ }
+ } else if (opcao == 3) {
+ System.out.println(“Encerrando a agenda...”);
+ Break;
+ } else {
+ System.out.println(“Opção inválida!”);
+ }
+ }
+ Sc.close();
+ }
+   }
