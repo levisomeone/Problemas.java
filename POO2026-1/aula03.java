@@ -75,6 +75,43 @@ public class Main {
     }
 }
 
+02) Conta de banco:
+
+public class Conta {
+
+    private int numero;
+    private String nomeTitular;
+    private double saldo;
+
+    
+    public void cadastrarConta(int numero, String nomeTitular, double saldo) {
+        this.numero = numero;
+        this.nomeTitular = nomeTitular;
+        this.saldo = saldo;
+    }
+
+    
+    public void depositar(double valor) {
+        if (valor > 0) {
+            saldo += valor;
+        }
+    }
+
+    public boolean sacar(double valor) {
+        if (valor > 0 && valor <= saldo) {
+            saldo -= valor;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+}
+
+
 03) Sistema de Alunos: 
 
 import java.util.Scanner;
@@ -241,3 +278,351 @@ public class SimularDados{
 }
 
 07) 
+import java.util.Scanner;
+
+class MaiorNumero {
+
+    public static int calcularMaior(int a, int b) {
+        if (a > b) {
+            return a;
+        } else {
+            return b;
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int num1 = sc.nextInt();
+        int num2 = sc.nextInt();
+
+        int maior = MaiorNumero.calcularMaior(num1, num2);
+
+        System.out.println("Maior número: " + maior);
+
+        sc.close();
+    }
+}
+
+
+08)
+    
+import java.util.Scanner;
+
+class MenorNumero {
+
+    public static int calcularMenor(int a, int b) {
+        if (a < b) {
+            return a;
+        } else {
+            return b;
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int num1 = sc.nextInt();
+        int num2 = sc.nextInt();
+
+        int menor = MenorNumero.calcularMenor(num1, num2);
+
+        System.out.println("Menor número: " + menor);
+
+        sc.close();
+    }
+}
+`
+09)
+
+import java.util.Scanner;
+
+class CaixaDAgua {
+
+    public static int calcularVolume(double lado) {
+        double volume = Math.pow(lado, 3);
+        return (int) Math.floor(volume);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        double lado = sc.nextDouble();
+
+        int volume = CaixaDAgua.calcularVolume(lado);
+
+        System.out.println(volume);
+
+        sc.close();
+    }
+}
+
+10)
+
+class RaizQuadrada {
+
+    public static double calcular(double numero) {
+        return Math.sqrt(numero);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        double raiz1 = RaizQuadrada.calcular(900);
+        double raiz2 = RaizQuadrada.calcular(30.25);
+
+        System.out.println(raiz1);
+        System.out.println(raiz2);
+    }
+}
+
+11)
+
+import java.util.Random;
+
+class CartaoLoteria {
+
+    public static int[] gerarCartao() {
+        Random random = new Random();
+        int[] numeros = new int[6];
+
+        for (int i = 0; i < 6; i++) {
+            numeros[i] = random.nextInt(60) + 1;
+        }
+
+        return numeros;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        for (int i = 1; i <= 5; i++) {
+            int[] cartao = CartaoLoteria.gerarCartao();
+            System.out.print("Cartão " + i + ": ");
+
+            for (int numero : cartao) {
+                System.out.print(numero + " ");
+            }
+
+            System.out.println();
+        }
+    }
+}
+
+12)
+
+    import java.util.Scanner;
+
+class Texto {
+
+    public static String paraMaiusculo(String texto) {
+        return texto.toUpperCase();
+    }
+
+    public static String paraMinusculo(String texto) {
+        return texto.toLowerCase();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        String entrada = sc.nextLine();
+
+        System.out.println(Texto.paraMaiusculo(entrada));
+        System.out.println(Texto.paraMinusculo(entrada));
+
+        sc.close();
+    }
+}
+
+13)
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        String nome1 = sc.nextLine();
+        String nome2 = sc.nextLine();
+
+        if (nome1.equals(nome2)) {
+            System.out.println("Os nomes são idênticos.");
+        } else {
+            System.out.println("Os nomes são diferentes.");
+        }
+
+        sc.close();
+    }
+}
+  
+14)
+
+    
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        String loginCorreto = "admin";
+        String senhaCorreta = "admin";
+
+        String login = sc.nextLine();
+        String senha = sc.nextLine();
+
+        if (login.equals(loginCorreto) && senha.equals(senhaCorreta)) {
+            System.out.println("Bem-vindo");
+        } else {
+            System.out.println("Login/senha incorreto");
+        }
+
+        sc.close();
+    }
+}
+
+
+15)
+
+ import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        String texto = "Para quem deseja se tornar um desenvolvedor é importantíssimo planejar a carreira e mirar nos objetivos certos. "
+                + "Então que caminho seguir? qual linguagem de programação devo aprender? O índice da TIOBE deve auxiliar vocês sobre o que deve estudar. "
+                + "As duas primeiras posições são das linguagens JAVA e C, seguidas por C++ e C# - Fonte: http://sejalivre.org/ranking-das-linguagens-de-programacao/";
+
+        while (true) {
+
+            System.out.println("\na. Buscar palavra (busca comum)");
+            System.out.println("b. Buscar palavra (Ignorando maiúsculas e minúsculas)");
+            System.out.println("c. Sair");
+
+            String opcao = sc.nextLine();
+
+            if (opcao.equals("a")) {
+
+                System.out.print("Digite a palavra ou frase: ");
+                String busca = sc.nextLine();
+
+                if (texto.contains(busca)) {
+                    System.out.println("Encontrado no texto.");
+                } else {
+                    System.out.println("Não encontrado no texto.");
+                }
+
+            } else if (opcao.equals("b")) {
+
+                System.out.print("Digite a palavra ou frase: ");
+                String busca = sc.nextLine();
+
+                if (texto.toLowerCase().contains(busca.toLowerCase())) {
+                    System.out.println("Encontrado no texto.");
+                } else {
+                    System.out.println("Não encontrado no texto.");
+                }
+
+            } else if (opcao.equals("c")) {
+                break;
+            }
+        }
+
+        sc.close();
+    }
+}
+
+##Desafio:
+
+import java.util.Scanner;
+
+class Cinema {
+
+    private char[][] sala;
+
+    public Cinema(int linhas, int colunas) {
+        sala = new char[linhas][colunas];
+        for (int i = 0; i < linhas; i++) {
+            for (int j = 0; j < colunas; j++) {
+                sala[i][j] = '-';
+            }
+        }
+    }
+
+    public boolean reservar(int fileira, int cadeira) {
+        if (fileira < 0 || fileira >= sala.length ||
+            cadeira < 0 || cadeira >= sala[0].length) {
+            return false;
+        }
+
+        if (sala[fileira][cadeira] == 'X') {
+            return false;
+        }
+
+        sala[fileira][cadeira] = 'X';
+        return true;
+    }
+
+    public void mostrarMapa() {
+        System.out.println("\nMapa da Sala:");
+        for (int i = 0; i < sala.length; i++) {
+            for (int j = 0; j < sala[i].length; j++) {
+                System.out.print(sala[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        Cinema cinema = new Cinema(10, 10);
+
+        while (true) {
+
+            cinema.mostrarMapa();
+
+            System.out.print("\nDigite a fileira (0 a 9) ou -1 para sair: ");
+            int fileira = sc.nextInt();
+
+            if (fileira == -1) {
+                break;
+            }
+
+            System.out.print("Digite a cadeira (0 a 9): ");
+            int cadeira = sc.nextInt();
+
+            boolean sucesso = cinema.reservar(fileira, cadeira);
+
+            if (sucesso) {
+                System.out.println("Reserva realizada com sucesso!");
+            } else {
+                System.out.println("Assento ocupado ou inválido. Tente novamente.");
+            }
+        }
+
+        sc.close();
+    }
+}
+
+
