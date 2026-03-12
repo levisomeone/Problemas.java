@@ -1,60 +1,54 @@
+q1) ContaBancaria
 
-Escrita:
-1) Explique os conceitos abaixo:
-a. Herança;
-b. Polimorfismo;
-c. Sobrecarga de métodos;
-d. Sobrescrita de métodos;
+//class ContaBancaria
+  import java.util.ArrayList;
 
-a.A herança é um princípio que busca a criação de classes provenientes de classes já criadas anteriormente, podendo herdar métodos e atributos do pai que seria a superclasse, o filho
-  se denominando subclasse
+public class ContaBancaria {
 
-b.Polimorfisto é um conceito de abstração que te permite agir de formas diferentes para um mesmo atríbuto, em suma, um objeto ele pode se comportar de maneira diferente dependendo da mensagem que recebe
+    private int numeroConta;
+    private String titular;
+    private double saldo;
 
-c.A Sobrecarga de métodos determina um modelo de utilização de variaçôes de um memso método, permite por exemplo que usemos o nome em mais de um método contanto que as listas adjascentes e argumentos estejam diferentes para sua separação
+    private ArrayList<String> historico;
 
-d.Sobrescrita de métodos consiste na permissão de reescrever um método, eles devem possuir o mesmo nome e semântica, porém acontecerá o mesmo incremento na classe com especificações próprias.
+    public ContaBancaria(int numeroConta, String titular) {
+        this.numeroConta = numeroConta;
+        this.titular = titular;
+        this.saldo = 0;
+        this.historico = new ArrayList<>();
+    }
 
-
-q1) Construtores e Encapsulamento
-
-  //class Funcionario
-  public class Funcionario {
-
-    private String nome;
-    private double salarioBase;
-
-    public Funcionario(String nome, double salarioBase) {
-        this.nome = nome;
-        if (salarioBase >= 0) {
-            this.salarioBase = salarioBase;
+    public void depositar(double valor) {
+        if (valor > 0) {
+            saldo += valor;
+            historico.add("Depósito de " + valor);
         } else {
-            this.salarioBase = 0;
+            historico.add("Tentativa de depósito inválido: " + valor);
         }
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public double getSalarioBase() {
-        return salarioBase;
-    }
-
-    public void setSalarioBase(double salarioBase) {
-        if (salarioBase >= 0) {
-            this.salarioBase = salarioBase;
+    public void sacar(double valor) {
+        if (valor <= saldo) {
+            saldo -= valor;
+            historico.add("Saque de " + valor);
         } else {
-            System.out.println("Salário não pode ser negativo.");
+            historico.add("Tentativa de saque falha: saldo insuficiente");
         }
     }
 
-    public double calcularSalario() {
-        return salarioBase;
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public void imprimirExtrato() {
+        System.out.println("Extrato da conta: " + numeroConta);
+        System.out.println("Titular: " + titular);
+
+        for (String operacao : historico) {
+            System.out.println(operacao);
+        }
+
+        System.out.println("Saldo atual: " + saldo);
     }
 }
 
@@ -62,248 +56,287 @@ q1) Construtores e Encapsulamento
 public class Main {
     public static void main(String[] args) {
 
-        Funcionario f1 = new Funcionario("Carlos", 2500);
+        ContaBancaria conta = new ContaBancaria(12345, "Carlos");
 
-        System.out.println("Nome: " + f1.getNome());
-        System.out.println("Salário: " + f1.calcularSalario());
+        conta.depositar(100);
+        conta.depositar(50);
+        conta.sacar(30);
+        conta.sacar(200);
 
-        f1.setSalarioBase(3000);
-        System.out.println("Novo salário: " + f1.calcularSalario());
-
-        f1.setSalarioBase(-500);
+        conta.imprimirExtrato();
     }
 }
 
+Desafio) Desafio porposto pelo Professor Vinícius Nunes, matéria de Programaçao Orientada a Objetos;
 
-q2) Herança e Sobrescrita
+##Contexto do Sistema
+Você deve desenvolver um Sistema de Gestão de Tickets de Suporte
+para uma empresa de software. O sistema deve organizar os chamados
+por prioridade e armazená-los em memória.
 
-  //@override //class Funcionario
-  public class Funcionario {
+#a. Estrutura de Pacotes e Enumerações
+  
+ Crie um pacote chamado software.modelo.
+ Dentro deste pacote, crie uma Enumeração chamada Prioridade
+com os valores: BAIXA, MEDIA, ALTA e URGENTE.
+  
+ Adicione um atributo inteiro prazoHoras a cada constante da
+Enum (ex: BAIXA = 72h, URGENTE = 4h). Crie um construtor na
+Enum e um método getter para esse atributo.
+  
+#b. Encapsulamento e Construtores
+  
+ No mesmo pacote, crie a classe Ticket.
+  
+ Aplique o Encapsulamento: Atributos devem ser private.
+  o int id (deve ser gerado automaticamente);
+  o String descricao;
+  o Prioridade prioridade;
+  o static int contador (Modificador static para controlar o ID
+  global).
 
-    private String nome;
-    private double salarioBase;
+ Implemente um Construtor que receba apenas a descrição e a
+prioridade. O ID deve ser atribuído usando o valor atual do
+contador e, em seguida, incremente o contador.
+  
+ Implemente os métodos getters e setters necessários. No
+setDescricao, não permita strings vazias.
+  
+#c. Modificadores e Regras de Negócio
+  
+ Na classe Ticket, crie uma constante (final) que defina o nome do
+sistema (ex: &quot;SISTEMA_SUPORTE_V1&quot;).
 
-    public Funcionario(String nome, double salarioBase) {
-        this.nome = nome;
-        if (salarioBase >= 0) {
-            this.salarioBase = salarioBase;
-        } else {
-            this.salarioBase = 0;
-        }
+ Crie um método chamado exibirDetalhes() que retorne uma String
+com todas as informações do ticket, incluindo o prazo em horas
+(buscado da Enum).
+  
+#d. Java Collections Framework
+  
+ Crie um novo pacote chamado software.gestao.
+ Crie a classe GerenciadorTickets.
+  
+ Utilize um ArrayList&lt;Ticket&gt; para armazenar os chamados.
+ Implemente os métodos:
+
+#a. adicionarTicket(Ticket t): Adiciona o objeto à lista.
+#b. removerTicket(int id): Remove o ticket da lista que possuir
+o ID informado.
+#c. listarPorPrioridade(Prioridade p): Retorna uma nova lista
+contendo apenas os tickets daquela prioridade.
+#d. contarTotal(): Retorna o total de tickets usando o atributo
+static da classe Ticket.
+  
+#e. Classe Principal (Main)
+
+ Crie o pacote software.main e a classe SistemaPrincipal.
+ No método main:
+  
+a. Instancie o GerenciadorTickets.
+b. Crie pelo menos 5 tickets com prioridades diferentes.
+c. Adicione-os ao gerenciador.
+d. Imprimir a lista de tickets na tela.
+e. Remova um ticket e mostre o total atualizado.
+  
+#f. Para Finalizar...
+ Implemente uma ordenação na lista de tickets para que, ao listar,
+os tickets de prioridade URGENTE apareçam sempre no topo da
+lista (Dica: Use Collections.sort() e a interface Comparable).
+
+//estrutura usada:
+software
+ ├─ modelo
+ │   ├─ Prioridade.java
+ │   └─ Ticket.java
+ │
+ ├─ gestao
+ │   └─ GerenciadorTickets.java
+ │
+ └─ main
+     └─ SistemaPrincipal.java
+
+//software/modelo/Prioridade.java
+package software.modelo;
+
+public enum Prioridade {
+
+    BAIXA(72),
+    MEDIA(48),
+    ALTA(24),
+    URGENTE(4);
+
+    private int prazoHoras;
+
+    Prioridade(int prazoHoras) {
+        this.prazoHoras = prazoHoras;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public double getSalarioBase() {
-        return salarioBase;
-    }
-
-    public void setSalarioBase(double salarioBase) {
-        if (salarioBase >= 0) {
-            this.salarioBase = salarioBase;
-        }
-    }
-
-    public double calcularSalario() {
-        return salarioBase;
+    public int getPrazoHoras() {
+        return prazoHoras;
     }
 }
 
-//class Gerente
+//software/modelo/Ticket.java
+package software.modelo;
 
-public class Gerente extends Funcionario {
+public class Ticket implements Comparable<Ticket> {
 
-    private double bonus;
+    private int id;
+    private String descricao;
+    private Prioridade prioridade;
 
-    public Gerente(String nome, double salarioBase, double bonus) {
-        super(nome, salarioBase);
-        this.bonus = bonus;
+    private static int contador = 1;
+
+    public static final String SISTEMA = "SISTEMA_SUPORTE_V1";
+
+    public Ticket(String descricao, Prioridade prioridade) {
+        this.id = contador++;
+        setDescricao(descricao);
+        this.prioridade = prioridade;
     }
 
-    public double getBonus() {
-        return bonus;
+    public int getId() {
+        return id;
     }
 
-    public void setBonus(double bonus) {
-        this.bonus = bonus;
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public Prioridade getPrioridade() {
+        return prioridade;
+    }
+
+    public static int getContador() {
+        return contador - 1;
+    }
+
+    public void setDescricao(String descricao) {
+        if (descricao != null && !descricao.isEmpty()) {
+            this.descricao = descricao;
+        }
+    }
+
+    public void setPrioridade(Prioridade prioridade) {
+        this.prioridade = prioridade;
+    }
+
+    public String exibirDetalhes() {
+        return "ID: " + id +
+               " | Descrição: " + descricao +
+               " | Prioridade: " + prioridade +
+               " | Prazo: " + prioridade.getPrazoHoras() + "h";
     }
 
     @Override
-    public double calcularSalario() {
-        return getSalarioBase() + bonus;
+    public int compareTo(Ticket outro) {
+        return outro.prioridade.ordinal() - this.prioridade.ordinal();
     }
 }
 
-//class Vendedor
+//software/gestao/GerenciadorTickets.java
+package software.gestao;
 
-public class Vendedor extends Funcionario {
-
-    private double comissao;
-
-    public Vendedor(String nome, double salarioBase, double comissao) {
-        super(nome, salarioBase);
-        this.comissao = comissao;
-    }
-
-    public double getComissao() {
-        return comissao;
-    }
-
-    public void setComissao(double comissao) {
-        this.comissao = comissao;
-    }
-
-    @Override
-    public double calcularSalario() {
-        return getSalarioBase() + comissao;
-    }
-}
-
-//main
-
-public class Main {
-    public static void main(String[] args) {
-
-        Gerente g = new Gerente("Ana", 5000, 1500);
-        Vendedor v = new Vendedor("Carlos", 2000, 800);
-
-        System.out.println("Salário do gerente: " + g.calcularSalario());
-        System.out.println("Salário do vendedor: " + v.calcularSalario());
-    }
-}
-
-q3) Enums e Composição
-
-//Enum
-  public enum Departamento {
-    VENDAS,
-    FINANCEIRO,
-    RH
-}
-
-//class Funcionario
-public class Funcionario {
-
-    private String nome;
-    private double salarioBase;
-    private Departamento departamento;
-
-    public Funcionario(String nome, double salarioBase, Departamento departamento) {
-        this.nome = nome;
-
-        if (salarioBase >= 0) {
-            this.salarioBase = salarioBase;
-        } else {
-            this.salarioBase = 0;
-        }
-
-        this.departamento = departamento;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public double getSalarioBase() {
-        return salarioBase;
-    }
-
-    public Departamento getDepartamento() {
-        return departamento;
-    }
-
-    public void setDepartamento(Departamento departamento) {
-        this.departamento = departamento;
-    }
-
-    public void setSalarioBase(double salarioBase) {
-        if (salarioBase >= 0) {
-            this.salarioBase = salarioBase;
-        }
-    }
-
-    public double calcularSalario() {
-        return salarioBase;
-    }
-}
-
-//main
-public class Main {
-    public static void main(String[] args) {
-
-        Funcionario f1 = new Funcionario(
-            "Carlos",
-            3000,
-            Departamento.VENDAS
-        );
-
-        System.out.println("Nome: " + f1.getNome());
-        System.out.println("Departamento: " + f1.getDepartamento());
-    }
-}
-
-q4) Java Collections e Polimorfismo
-
-//main
 import java.util.ArrayList;
+import java.util.Collections;
+import software.modelo.Ticket;
+import software.modelo.Prioridade;
 
-public class Main {
-    public static void main(String[] args) {
+public class GerenciadorTickets {
 
-        ArrayList<Funcionario> funcionarios = new ArrayList<>();
+    private ArrayList<Ticket> tickets = new ArrayList<>();
 
-        Funcionario g1 = new Gerente("Ana", 5000, 1500, Departamento.FINANCEIRO);
-        Funcionario g2 = new Gerente("Marcos", 4800, 1200, Departamento.RH);
-
-        Funcionario v1 = new Vendedor("Carlos", 2000, 800, Departamento.VENDAS);
-        Funcionario v2 = new Vendedor("Julia", 2200, 900, Departamento.VENDAS);
-
-        funcionarios.add(g1);
-        funcionarios.add(g2);
-        funcionarios.add(v1);
-        funcionarios.add(v2);
-
-        for (Funcionario f : funcionarios) {
-            System.out.println("Nome: " + f.getNome());
-            System.out.println("Salário: " + f.calcularSalario());
-            System.out.println("---------------------");
-        }
+    public void adicionarTicket(Ticket t) {
+        tickets.add(t);
     }
-}
 
-q5) Casting e Instanceof
+    public void removerTicket(int id) {
 
-//main
-import java.util.ArrayList;
+        Ticket remover = null;
 
-public class Main {
-    public static void main(String[] args) {
-
-        ArrayList<Funcionario> listaFuncionarios = new ArrayList<>();
-
-        listaFuncionarios.add(new Gerente("Ana", 5000, 1500, Departamento.FINANCEIRO));
-        listaFuncionarios.add(new Gerente("Marcos", 4800, 1200, Departamento.RH));
-        listaFuncionarios.add(new Vendedor("Carlos", 2000, 800, Departamento.VENDAS));
-        listaFuncionarios.add(new Vendedor("Julia", 2200, 900, Departamento.VENDAS));       //Uma surpresa para está noite de quarta, Instanceof me parece realmente muito efetivo em código limpo
-
-        for (Funcionario f : listaFuncionarios) {
-
-            System.out.println(f.getNome() + " recebe: " + f.calcularSalario());
-
-            if (f instanceof Gerente) {
-
-                Gerente g = (Gerente) f;
-
-                System.out.println("Bônus do gerente: " + g.getBonus());
+        for (Ticket t : tickets) {
+            if (t.getId() == id) {
+                remover = t;
+                break;
             }
+        }
 
-            System.out.println("---------------------");
+        if (remover != null) {
+            tickets.remove(remover);
+        }
+    }
+
+    public ArrayList<Ticket> listarPorPrioridade(Prioridade p) {
+
+        ArrayList<Ticket> lista = new ArrayList<>();
+
+        for (Ticket t : tickets) {
+            if (t.getPrioridade() == p) {
+                lista.add(t);
+            }
+        }
+
+        return lista;
+    }
+
+    public int contarTotal() {
+        return Ticket.getContador();
+    }
+
+    public void listarTodos() {
+
+        Collections.sort(tickets);
+
+        for (Ticket t : tickets) {
+            System.out.println(t.exibirDetalhes());
         }
     }
 }
+
+//software/main/SistemaPrincipal.java
+package software.main;
+
+import software.modelo.*;
+import software.gestao.*;
+
+public class SistemaPrincipal {
+
+    public static void main(String[] args) {
+
+        GerenciadorTickets gerenciador = new GerenciadorTickets();
+
+        Ticket t1 = new Ticket("Erro no login", Prioridade.ALTA);
+        Ticket t2 = new Ticket("Página lenta", Prioridade.MEDIA);
+        Ticket t3 = new Ticket("Sistema caiu", Prioridade.URGENTE);
+        Ticket t4 = new Ticket("Atualização solicitada", Prioridade.BAIXA);
+        Ticket t5 = new Ticket("Erro no banco de dados", Prioridade.URGENTE);
+
+        gerenciador.adicionarTicket(t1);
+        gerenciador.adicionarTicket(t2);
+        gerenciador.adicionarTicket(t3);
+        gerenciador.adicionarTicket(t4);
+        gerenciador.adicionarTicket(t5);
+
+        System.out.println("LISTA DE TICKETS:");
+        gerenciador.listarTodos();
+
+        System.out.println("\nRemovendo ticket ID 2...");
+        gerenciador.removerTicket(2);
+
+        System.out.println("\nTOTAL DE TICKETS: " + gerenciador.contarTotal());
+    }
+}
+
+## Conceitos Usados no Exercício:
+
+
+| Conceito | Onde foi usado |
+|--------|----------------|
+| Enum | Classe `Prioridade` para definir níveis de prioridade dos tickets |
+| Encapsulamento | Atributos `private` na classe `Ticket` |
+| static | Contador global de IDs (`contador`) na classe `Ticket` |
+| final | Constante do sistema `SISTEMA_SUPORTE_V1` |
+| Pacotes | Organização em `software.modelo`, `software.gestao`, `software.main` |
+| Collections | Uso de `ArrayList` para armazenar os tickets |
+| Comparable | Implementado em `Ticket` para permitir ordenação por prioridade |
+| Collections.sort() | Utilizado para ordenar os tickets antes de listá-los |
