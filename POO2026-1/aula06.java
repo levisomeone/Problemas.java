@@ -1,3 +1,14 @@
+Q1) Explique o conceito de encapsulamento.
+  ncapsulamento é um dos pilares da programação orientada a objetos. Ele consiste em esconder os detalhes internos de uma classe e permitir o acesso aos dados apenas por meio de métodos controlados.
+  Ou seja, em vez de acessar diretamente os atributos (variáveis), você utiliza métodos públicos para interagir com eles, garantindo mais segurança, organização e controle.
+
+Q2) Para que serve os gets e sets?
+  Os getters (get) e setters (set) são métodos usados para acessar e modificar atributos privados de uma classe.
+
+  Getter: retorna o valor de um atributo
+  Setter: altera o valor de um atributo (geralmente com validação)
+
+
 q1) ContaBancaria
 
 //class ContaBancaria
